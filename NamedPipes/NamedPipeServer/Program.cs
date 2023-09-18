@@ -1,23 +1,73 @@
 ﻿using System;
+using System.IO;
 using System.IO.Pipes;
 
 // See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
 
 // サーバーサイド
-using (NamedPipeClientStream pipeClient = new NamedPipeClientStream(".", "testpipe", PipeDirection.In))
+using (NamedPipeServerStream pipeServer = new NamedPipeServerStream("testpipe"))
 {
-    Console.WriteLine("サーバーに接続中...");
-    pipeClient.Connect();
+    Console.WriteLine("NamedPipeServer がクライアントの接続を待っています...");
+    pipeServer.WaitForConnection();
 
-    using (System.IO.StreamReader sr = new System.IO.StreamReader(pipeClient))
+    Console.WriteLine("クライアントが接続しました。");
+    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(pipeServer))
+    // using (StreamReader sr = new StreamReader(pipeServer))
     {
-        string temp;
-        while ((temp = sr.ReadLine()) != null)
+        sw.AutoFlush = true;
+        
+        sw.WriteLine("Hello, Named Pipe");
+
+/*
+        while (true)
         {
-            Console.WriteLine("受信: {0}", temp);
+            string messageFromClient = sr.ReadLine();
+            Console.WriteLine($"クライアントから受信: {messageFromClient}");
+
+            string response = $"サーバーからの応答: {messageFromClient}";
+            sw.WriteLine(response);
+
+            if (messageFromClient == "終了")
+            {
+                break;
+            }
+        }
+ */    
+    }
+}
+
+Console.WriteLine("サーバーが終了しました。");
+
+/*
+
+using (NamedPipeServerStream pipeServer = new NamedPipeServerStream("testpipe"))
+{
+    Console.WriteLine("NamedPipeServer がクライアントの接続を待っています...");
+    pipeServer.WaitForConnection();
+
+    Console.WriteLine("クライアントが接続しました。");
+    using (StreamWriter sw = new StreamWriter(pipeServer))
+    using (StreamReader sr = new StreamReader(pipeServer))
+    {
+        sw.AutoFlush = true;
+
+        while (true)
+        {
+            string messageFromClient = sr.ReadLine();
+            Console.WriteLine($"クライアントから受信: {messageFromClient}");
+
+            string response = $"サーバーからの応答: {messageFromClient}";
+            sw.WriteLine(response);
+
+            if (messageFromClient == "終了")
+            {
+                break;
+            }
         }
     }
 }
 
-Console.WriteLine("クライアントが終了しました。");
+Console.WriteLine("サーバーが終了しました。");
+
+ */

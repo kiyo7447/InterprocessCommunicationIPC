@@ -5,17 +5,19 @@ using System.IO.Pipes;
 Console.WriteLine("Hello, World!");
 
 // クライアントサイド
-using (NamedPipeServerStream pipeServer = new NamedPipeServerStream("testpipe"))
+using (NamedPipeClientStream pipeClient = new NamedPipeClientStream(".", "testpipe", PipeDirection.In))
 {
-    Console.WriteLine("NamedPipeServer がクライアントの接続を待っています...");
-    pipeServer.WaitForConnection();
+    Console.WriteLine("サーバーに接続中...");
+    pipeClient.Connect();
 
-    Console.WriteLine("クライアントが接続しました。");
-    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(pipeServer))
+    using (System.IO.StreamReader sr = new System.IO.StreamReader(pipeClient))
     {
-        sw.AutoFlush = true;
-        sw.WriteLine("Hello, Named Pipe");
+        string temp;
+        while ((temp = sr.ReadLine()) != null)
+        {
+            Console.WriteLine("受信: {0}", temp);
+        }
     }
 }
 
-Console.WriteLine("サーバーが終了しました。");
+Console.WriteLine("クライアントが終了しました。");

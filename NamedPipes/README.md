@@ -10,3 +10,10 @@ cd NamedPipeClient
 dotnet build && dotnet run
 ```
 
+# 処理性能を試す
+```powershell
+# サーバサイド
+dotnet run repeat
+# クライアントサイド
+dotnet run loadtest
+```
