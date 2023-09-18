@@ -35,3 +35,6 @@ HTTPやgRPCなどのプロトコルを使用して、異なるプロセスやマ
 1. [Named Pipes（名前付きパイプ）](./NamedPipes)  
 名前付きパイプを介したデータ共有ができます。これはプロセス間で小量のデータを効率的に共有するのに使えます。
 1. [Socket](./Sockets)
+1. [WebAPI](./WebAPI)
+1. [gRPC](./gRPC)
+
