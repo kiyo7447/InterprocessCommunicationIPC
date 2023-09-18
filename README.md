@@ -35,8 +35,20 @@ HTTPやgRPCなどのプロトコルを使用して、異なるプロセスやマ
 1. [Named Pipes（名前付きパイプ）](./NamedPipes)  
 名前付きパイプを介したデータ共有ができます。これはプロセス間で小量のデータを効率的に共有するのに使えます。
 1. [Socket](./Sockets)  
+ネットワーク上での低レベルな通信を提供する技術であり、多くのプログラミング言語でサポートされています。
+1. [WebAPI（Web Application Programming Interface）](./WebAPI)  
+HTTPプロトコルを使用して異なるシステムやアプリケーション間で通信を行うためのインターフェースです。
+HTTP（REST API）
+1. [gRPC](./gRPC)   
+大規模なシステムやマイクロサービスで採用されている、高性能なRPCフレームワークです。
+1. [RabbitMQ](./RabbitMQ)  
+高度にスケーラブルで信頼性の高いメッセージブローカーソフトウェアです。AMQP（Advanced Message Queuing Protocol）を主なプロトコルとして使用しており、複数のメッセージングパターンをサポートしています。
+1. [Kafka](./Kafka)  
+In progress...
 
-1. [WebAPI](./WebAPI)  
-HTTP（特にREST API）
-1. [gRPC](./gRPC)  
+# TODO
+* GraphQL: Facebookが開発。クライアントが必要なデータ形式を指定できる。
+* SOAP: 古いが確立されたプロトコル。セキュリティ機能が豊富。
+* Thrift: Apacheプロジェクト。gRPCと同様にIDL（インターフェース定義言語）を用いたスキーマ定義が可能。
+
 
