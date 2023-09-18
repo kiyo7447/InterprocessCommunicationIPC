@@ -1,5 +1,4 @@
-﻿
-# プロジェクトの作成から実行まで。
+﻿# プロジェクトの作成から実行まで。
 ```powershell
 # 書き込み側
 dotnet new console -o WriteMappedFile
