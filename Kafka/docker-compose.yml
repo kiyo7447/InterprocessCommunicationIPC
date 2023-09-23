@@ -17,18 +17,22 @@ services:
     ports:
       - "9092:9092"
   prometheus:
+    # 設定は、prometheus.yml を編集する
     image: prom/prometheus:latest
+    depends_on:
+      - kafka
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
-# default user/pass is admin/admin
   grafana:
+    # default user/pass is admin/admin
     image: grafana/grafana:latest
+    depends_on:
+      - prometheus
     ports:
       - "3000:3000"
     # environment:
     #   - GF_SECURITY_ADMIN_USER=newadminusername
     #   - GF_SECURITY_ADMIN_PASSWORD=newadminpassword
 
-    
